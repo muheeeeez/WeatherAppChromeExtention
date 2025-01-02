@@ -1,27 +1,24 @@
 <template>
   <div id="app">
-    <h1>Hello, Chrome Extension!</h1>
+    <!-- <h1>Hello, Chrome Extension!</h1>
     <button @click="showAlert">Click Me</button>
-    <weather />
+    <weather /> -->
+    <home-view></home-view>
   </div>
 </template>
 
 <script>
-import Weather from './components/Weather.vue';
+import HomeView from "./views/HomeView.vue";
+// import Weather from './components/Weather.vue';
 export default {
-  components: { Weather },
-  methods: {
-    showAlert() {
-      alert("Hello");
-    }
-  }
-}
+  components: { HomeView },
+};
 </script>
 
 <style>
-#app {
+/* #app {
   text-align: center;
   padding: 20px;
   width: 300px;
-}
+} */
 </style>
