@@ -4,16 +4,16 @@
   "version": "1.0",
   "description": "Get real-time weather updates, forecasts, and alerts directly in your browser.",
   "icons": {
-    "16": "images/icon-16.png",
-    "48": "images/icon-48.png",
-    "128": "images/icon-128.png"
+    "16": "imaicon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
   },
   "action": {
     "default_popup": "index.html",
     "default_icons": {
-      "16": "images/icon-16.png",
-      "48": "images/icon-48.png",
-      "128": "images/icon-128.png"
+      "16": "icon-16.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
     }
   },
   "content_security_policy": {
