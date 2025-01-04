@@ -3,7 +3,8 @@
     <!-- <h1>Hello, Chrome Extension!</h1>
     <button @click="showAlert">Click Me</button>
     <weather /> -->
-    <home-view></home-view>
+    <!-- <home-view></home-view> -->
+    <router-view></router-view>
   </div>
 </template>
 

@@ -1,11 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
-
+import { createRouter, createWebHashHistory } from "vue-router";
+import HomeViewVue from "../views/HomeView.vue";
+import WeatherViewVue from "../views/WeatherView.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(),
   routes: [
- 
+    { path: "/", component: HomeViewVue },
+    { path: "/weather", component: WeatherViewVue },
   ],
-})
+});
 
-export default router
+export default router;

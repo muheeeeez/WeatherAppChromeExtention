@@ -11,7 +11,7 @@
       <button
         class="bg-yellow-300 text-xl text-purple-600 rounded-full h-15 w-34 font-semibold px-4 py-2 my-7 hover:bg-violet-600 hover:text-white"
       >
-        Get Started
+        <router-link to="/weather">Get Started</router-link>
       </button>
     </div>
   </div>
