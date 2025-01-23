@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-gradient-to-r from-purple-700 to-pink-500">
+  <section v-if="!isOnline" class="bg-red-100 text-red-800 p-2 rounded">
+    You are offline! ❌
+  </section>
+  <section class="bg-gradient-to-r from-purple-700 to-pink-500">
     <div>
       <img src="../assets/images/home-page.jpg" alt="home page image" />
     </div>
@@ -14,11 +17,36 @@
         <router-link to="/weather">Get Started</router-link>
       </button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isOnline: navigator.onLine,
+    };
+  },
+  methods: {
+    updateOnlineStatus() {
+      this.isOnline = navigator.onLine;
+    },
+  },
+  mounted() {
+    if (localStorage.getItem("hasVisitedIndex")) {
+      this.$router.push("/weather");
+    } else {
+      localStorage.setItem("hasVisitedIndex", "true");
+      this.updateOnlineStatus();
+      window.addEventListener("offline", this.updateOnlineStatus);
+      window.addEventListener("online", this.updateOnlineStatus);
+    }
+  },
+  beforeDestroy() {
+    window.removeEventListener("offline", this.updateOnlineStatus);
+    window.removeEventListener("online", this.updateOnlineStatus);
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

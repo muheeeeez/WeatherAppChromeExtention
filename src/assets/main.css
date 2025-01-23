@@ -1,5 +1,5 @@
 body {
   width: 350px; /* Desired width */
-  height: 350px; /* Desired height */
+  height: 400px; /* Desired height */
   overflow: auto; /* Add scrolling if content overflows */
 }
