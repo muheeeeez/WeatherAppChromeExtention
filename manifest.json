@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Weather App",
+  "version": "1.0.0",
+  "description": "Weather App is your go-to tool for staying updated on the weather in real time. Whether you're planning a trip, heading out for a walk, or just want to stay safe during severe weather, this extension provides quick and accurate weather updates right from your browser.\n\nWhy You Should Install It:\n1. Real-time Weather Updates: Get the latest weather conditions for your location instantly.\n2. Easy Access: No need to open a separate website or app—just click the extension to view the forecast or get updates in your browser.\n3. Accurate and Reliable: Powered by trustworthy weather data, so you can rely on the information you see.\n\nStay safe and make informed decisions with just a click. Install Weather App today!",
+  "permissions": [
+    "geolocation",
+    "notifications",
+    "alarms"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "src/assets/images/icon16.png",
+      "48": "src/assets/images/icon48.png",
+      "128": "src/assets/images/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "src/assets/images/icon16.png",
+    "48": "src/assets/images/icon48.png",
+    "128": "src/assets/images/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+} 
