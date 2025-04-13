@@ -9,40 +9,36 @@
   </section>
   
   <!-- Main container with dynamic weather background -->
-  <div class="relative">
+  <div class="relative w-[450px]">
     <!-- Dynamic background that changes based on weather conditions -->
     <div :class="weatherBackground" class="min-h-screen pb-6 transition-all duration-1000">
-      <!-- Header section with logo and search bar -->
-      <div class="px-4 pt-6 pb-2">
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <!-- Logo container -->
-          <div class="logo text-white w-28">
-            <img src="../assets/images/logo.png" alt="Weather Forecast Logo" class="w-full" />
-          </div>
+      <!-- Header section with search bar only (logo removed) -->
+      <div class="px-6 pt-6 pb-4">
+        <div class="flex items-center justify-between gap-4">
           <!-- Search bar container -->
-          <div class="search-wrapper w-full sm:w-72">
+          <div class="search-wrapper w-full">
             <!-- Search input with glassmorphism effect -->
-            <div class="flex rounded-full border-2 border-white overflow-hidden bg-white/10 backdrop-blur-sm">
+            <div class="flex rounded-full border-2 border-gray-800 overflow-hidden bg-gray-100/10 backdrop-blur-sm">
               <!-- City search input -->
               <input
                 type="text"
                 placeholder="Search city..."
-                class="w-full outline-none bg-transparent text-white text-base px-4 py-2.5 placeholder-white/70"
+                class="w-full outline-none bg-transparent text-gray-800 text-xl px-5 py-3.5 placeholder-gray-800 font-medium"
                 v-model="query"
                 @keypress.enter="fetchWeather"
               />
               <!-- Search button -->
               <button
                 type="button"
-                class="flex items-center justify-center bg-white/20 hover:bg-white/30 px-6 transition-colors"
+                class="flex items-center justify-center bg-gray-200/20 hover:bg-gray-300/30 px-6 transition-colors"
                 @click="fetchWeather"
               >
                 <!-- Search icon -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 192.904 192.904"
-                  width="20px"
-                  class="fill-white"
+                  width="24px"
+                  class="fill-gray-800"
                 >
                   <path
                     d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"
@@ -51,15 +47,33 @@
               </button>
             </div>
           </div>
+          
+          <!-- Location button (icon only) -->
+          <button
+            type="button"
+            class="flex-shrink-0 h-14 w-14 flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 rounded-full shadow-lg text-white transform hover:scale-105 transition-all duration-300"
+            @click="getLocation"
+            title="Use my location"
+          >
+            <!-- Location pin icon -->
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="28px" 
+              viewBox="0 0 24 24" 
+              fill="currentColor"
+            >
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </button>
         </div>
       </div>
 
       <!-- Main weather display card -->
       <div class="mt-4 px-4">
         <!-- Weather card with glassmorphism effect -->
-        <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 shadow-lg">
+        <div class="bg-gray-100/10 backdrop-blur-sm rounded-3xl p-8 shadow-lg">
           <!-- Temperature and weather icon section -->
-          <div class="flex justify-center items-center text-white">
+          <div class="flex justify-center items-center text-gray-800">
             <!-- Temperature and location info -->
             <div class="text-center">
               <!-- Current temperature -->
@@ -84,9 +98,9 @@
           </div>
 
           <!-- Weather description section -->
-          <div class="mt-6 text-center text-white">
+          <div class="mt-6 text-center text-gray-800">
             <!-- Weather condition description -->
-            <span class="px-6 py-2 rounded-full bg-white/20 text-base font-medium uppercase">
+            <span class="px-6 py-2 rounded-full bg-gray-200/20 text-base font-medium uppercase">
               {{
                 weather.weather &&
                 weather.weather[0] &&
@@ -104,47 +118,47 @@
           <!-- Weather details grid -->
           <div class="grid grid-cols-2 gap-4 mt-8">
             <!-- Maximum temperature card -->
-            <div class="bg-white/10 rounded-xl p-4 flex items-center">
+            <div class="bg-gray-100/10 rounded-xl p-4 flex items-center">
               <img src="../assets/images/temp-max.png" alt="temp-max" class="w-10 h-10 mr-3" />
               <div>
-                <div class="text-white/80 text-sm">Maximum</div>
-                <div class="text-white text-xl">{{ weather.main ? Math.round(weather.main.temp_max) : "--" }}°</div>
+                <div class="text-gray-600 text-sm">Maximum</div>
+                <div class="text-gray-800 text-xl">{{ weather.main ? Math.round(weather.main.temp_max) : "--" }}°</div>
               </div>
             </div>
             
             <!-- Minimum temperature card -->
-            <div class="bg-white/10 rounded-xl p-4 flex items-center">
+            <div class="bg-gray-100/10 rounded-xl p-4 flex items-center">
               <img src="../assets/images/temp-min.png" alt="temp-min" class="w-10 h-10 mr-3" />
               <div>
-                <div class="text-white/80 text-sm">Minimum</div>
-                <div class="text-white text-xl">{{ weather.main ? Math.round(weather.main.temp_min) : "--" }}°</div>
+                <div class="text-gray-600 text-sm">Minimum</div>
+                <div class="text-gray-800 text-xl">{{ weather.main ? Math.round(weather.main.temp_min) : "--" }}°</div>
               </div>
             </div>
             
             <!-- Humidity card -->
-            <div class="bg-white/10 rounded-xl p-4 flex items-center">
+            <div class="bg-gray-100/10 rounded-xl p-4 flex items-center">
               <img src="../assets/images/humadity.png" alt="humidity" class="w-10 h-10 mr-3" />
               <div>
-                <div class="text-white/80 text-sm">Humidity</div>
-                <div class="text-white text-xl">{{ weather.main ? Math.round(weather.main.humidity) : "--" }}%</div>
+                <div class="text-gray-600 text-sm">Humidity</div>
+                <div class="text-gray-800 text-xl">{{ weather.main ? Math.round(weather.main.humidity) : "--" }}%</div>
               </div>
             </div>
             
             <!-- Wind speed card -->
-            <div class="bg-white/10 rounded-xl p-4 flex items-center">
+            <div class="bg-gray-100/10 rounded-xl p-4 flex items-center">
               <img src="../assets/images/wind.png" alt="wind" class="w-10 h-10 mr-3" />
               <div>
-                <div class="text-white/80 text-sm">Wind</div>
-                <div class="text-white text-xl">{{ weather.wind ? Math.round(weather.wind.speed) : "--" }} km/h</div>
+                <div class="text-gray-600 text-sm">Wind</div>
+                <div class="text-gray-800 text-xl">{{ weather.wind ? Math.round(weather.wind.speed) : "--" }} km/h</div>
               </div>
             </div>
             
             <!-- Cloudiness card -->
-            <div class="bg-white/10 rounded-xl p-4 flex items-center col-span-2">
+            <div class="bg-gray-100/10 rounded-xl p-4 flex items-center col-span-2">
               <img src="../assets/images/cloudy-icon.png" alt="cloudy" class="w-10 h-10 mr-3" />
               <div>
-                <div class="text-white/80 text-sm">Cloudiness</div>
-                <div class="text-white text-xl">{{ weather.clouds ? Math.round(weather.clouds.all) : "--" }}%</div>
+                <div class="text-gray-600 text-sm">Cloudiness</div>
+                <div class="text-gray-800 text-xl">{{ weather.clouds ? Math.round(weather.clouds.all) : "--" }}%</div>
               </div>
             </div>
           </div>
@@ -153,7 +167,7 @@
       
       <!-- 5-Day Forecast section -->
       <div class="mt-8 px-4" v-if="forecast.list && forecast.list.length">
-        <h2 class="text-2xl font-semibold text-white mb-4">5-Day Forecast</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">5-Day Forecast</h2>
         <!-- Horizontally scrollable forecast cards -->
         <div class="overflow-x-auto pb-2">
           <div class="flex space-x-4" style="min-width: min-content">
@@ -161,10 +175,10 @@
             <div 
               v-for="(item, index) in dailyForecast" 
               :key="index"
-              class="bg-white/10 backdrop-blur-sm rounded-xl p-4 shadow-lg flex flex-col items-center min-w-[120px]"
+              class="bg-gray-100/10 backdrop-blur-sm rounded-xl p-4 shadow-lg flex flex-col items-center min-w-[140px]"
             >
               <!-- Day name -->
-              <p class="text-white text-sm mb-2">{{ formatForecastDay(item.dt) }}</p>
+              <p class="text-gray-800 text-sm mb-2">{{ formatForecastDay(item.dt) }}</p>
               <!-- Weather icon -->
               <img 
                 :src="`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`" 
@@ -172,17 +186,17 @@
                 class="w-16 h-16"
               />
               <!-- Weather description -->
-              <p class="text-white text-sm mt-2 mb-3 text-center">{{ item.weather[0].description }}</p>
+              <p class="text-gray-800 text-sm mt-2 mb-3 text-center">{{ item.weather[0].description }}</p>
               <!-- Temperature range bar -->
               <div class="flex justify-between w-full">
-                <span class="text-white text-sm">{{ Math.round(item.temp.min) }}°</span>
-                <div class="w-full mx-2 h-1.5 bg-white/20 rounded-full self-center">
+                <span class="text-gray-800 text-sm">{{ Math.round(item.temp.min) }}°</span>
+                <div class="w-full mx-2 h-1.5 bg-gray-200/20 rounded-full self-center">
                   <div 
                     class="h-full bg-yellow-300 rounded-full" 
                     :style="{width: `${tempPercentage(item.temp.min, item.temp.max)}%`}"
                   ></div>
                 </div>
-                <span class="text-white text-sm">{{ Math.round(item.temp.max) }}°</span>
+                <span class="text-gray-800 text-sm">{{ Math.round(item.temp.max) }}°</span>
               </div>
             </div>
           </div>
@@ -191,7 +205,7 @@
       
       <!-- Hourly Timeline section -->
       <div class="mt-8 px-4" v-if="forecast.list && forecast.list.length">
-        <h2 class="text-2xl font-semibold text-white mb-4">Hourly Timeline</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Hourly Timeline</h2>
         <!-- Horizontally scrollable timeline cards -->
         <div class="overflow-x-auto pb-2">
           <div class="flex space-x-4" style="min-width: min-content">
@@ -199,10 +213,10 @@
             <div 
               v-for="(item, index) in forecast.list.slice(0, 8)" 
               :key="index"
-              class="bg-white/10 backdrop-blur-sm rounded-xl p-4 shadow-lg flex flex-col items-center min-w-[100px]"
+              class="bg-gray-100/10 backdrop-blur-sm rounded-xl p-4 shadow-lg flex flex-col items-center min-w-[120px]"
             >
               <!-- Hour -->
-              <p class="text-white text-sm mb-2">{{ formatForecastTime(item.dt) }}</p>
+              <p class="text-gray-800 text-sm mb-2">{{ formatForecastTime(item.dt) }}</p>
               <!-- Weather icon -->
               <img 
                 :src="`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`" 
@@ -210,15 +224,15 @@
                 class="w-14 h-14"
               />
               <!-- Temperature -->
-              <p class="text-white text-lg font-medium">{{ Math.round(item.main.temp) }}°</p>
+              <p class="text-gray-800 text-lg font-medium">{{ Math.round(item.main.temp) }}°</p>
               <!-- Precipitation probability -->
               <div class="flex items-center mt-2">
-                <svg viewBox="0 0 24 24" class="h-4 w-4 fill-white/80" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 fill-gray-600" xmlns="http://www.w3.org/2000/svg">
                   <path d="M11.625 7.5H7.5v4.125c0 .621-.504 1.125-1.125 1.125S5.25 12.246 5.25 11.625v-5.25C5.25 5.754 5.754 5.25 6.375 5.25h5.25c.621 0 1.125.504 1.125 1.125S12.246 7.5 11.625 7.5z"/>
                   <path d="M12.97 3.03a1.125 1.125 0 010 1.59l-7.5 7.5a1.125 1.125 0 01-1.59-1.59l7.5-7.5a1.125 1.125 0 011.59 0zm8.25 8.25a1.125 1.125 0 010 1.59l-7.5 7.5a1.125 1.125 0 01-1.59-1.59l7.5-7.5a1.125 1.125 0 011.59 0z"/>
                   <path d="M17.625 19.5h-5.25c-.621 0-1.125-.504-1.125-1.125s.504-1.125 1.125-1.125h4.125V13.125c0-.621.504-1.125 1.125-1.125s1.125.504 1.125 1.125v5.25c0 .621-.504 1.125-1.125 1.125z"/>
                 </svg>
-                <span class="text-white/80 text-sm ml-1">
+                <span class="text-gray-600 text-sm ml-1">
                   {{ Math.round(item.pop * 100) }}%
                 </span>
               </div>
@@ -228,7 +242,7 @@
       </div>
       
       <!-- Footer with API attribution -->
-      <div class="text-center text-white/70 text-sm mt-8">
+      <div class="text-center text-gray-800 text-sm mt-8">
         <p>Powered by OpenWeatherMap API</p>
       </div>
     </div>
@@ -472,13 +486,14 @@ export default {
 <style scoped>
 /* Custom styles for input placeholder */
 input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(40, 40, 40, 0.9);
+  font-weight: 600;
 }
 
 /* Remove default input focus outline and add custom style */
 input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 2px rgba(100, 100, 100, 0.5);
 }
 
 /* Search wrapper transition effect */
@@ -494,7 +509,7 @@ input:focus {
 /* Custom scrollbar styles */
 .overflow-x-auto {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  scrollbar-color: rgba(100, 100, 100, 0.3) transparent;
 }
 
 /* Webkit scrollbar styles */
@@ -503,12 +518,12 @@ input:focus {
 }
 
 .overflow-x-auto::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(100, 100, 100, 0.1);
   border-radius: 10px;
 }
 
 .overflow-x-auto::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(100, 100, 100, 0.3);
   border-radius: 10px;
 }
 
